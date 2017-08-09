@@ -28,6 +28,7 @@ type MainWindow struct {
 	Persistent       bool
 	ToolTipText      Property
 	Visible          Property
+        HideBorder       bool
 
 	// Container
 
@@ -92,6 +93,10 @@ func (mw MainWindow) Create() error {
 	w.SetSuspended(true)
 	builder.Defer(func() error {
 		w.SetSuspended(false)
+                if mw.HideBorder {
+
+                    w.HideBorder()
+                }
 		return nil
 	})
 

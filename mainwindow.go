@@ -206,6 +206,13 @@ func (mw *MainWindow) SetFullscreen(fullscreen bool) error {
 	return nil
 }
 
+func (mw *MainWindow) HideBorder() error {
+        if err := mw.ensureStyleBits(win.WS_OVERLAPPEDWINDOW, false); err != nil {
+                return err
+        }
+        return nil
+}
+
 func (mw *MainWindow) WndProc(hwnd win.HWND, msg uint32, wParam, lParam uintptr) uintptr {
 	switch msg {
 	case win.WM_SIZE, win.WM_SIZING:
