@@ -519,6 +519,10 @@ func (wb *WindowBase) hasStyleBits(bits uint32) bool {
 	return style&bits == bits
 }
 
+func (wb *WindowBase) MakeDefault() error {
+    return wb.setAndClearStyleBits(win.BS_DEFPUSHBUTTON, win.BS_PUSHBUTTON)
+}
+
 func (wb *WindowBase) setAndClearStyleBits(set, clear uint32) error {
 	style := uint32(win.GetWindowLong(wb.hWnd, win.GWL_STYLE))
 	if style == 0 {

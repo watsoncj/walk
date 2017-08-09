@@ -30,6 +30,7 @@ type PushButton struct {
 	Persistent       bool
 	ToolTipText      Property
 	Visible          Property
+        IsDefault        bool
 
 	// Widget
 
@@ -70,6 +71,10 @@ func (pb PushButton) Create(builder *Builder) error {
 		if pb.AssignTo != nil {
 			*pb.AssignTo = w
 		}
+
+                if pb.IsDefault {
+                        w.MakeDefault()
+                }
 
 		return nil
 	})
